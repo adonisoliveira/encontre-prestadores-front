@@ -9,12 +9,13 @@
               <template v-for="servico in servicos" :key="servico._id">
                 <q-item class="list-item" clickable v-ripple>
                   <q-item-section>
-                    <q-item-label class="text-subtitle1 text-weight-bold">{{servico.titulo}}</q-item-label>
-                    <q-item-label >{{servico.descricao}}</q-item-label>
+                    <q-item-label class="text-subtitle1 text-weight-bold">{{ servico.titulo }}</q-item-label>
+                    <q-item-label>{{ servico.descricao }}</q-item-label>
                     <q-item-label class="text-weight-bold">Contratante</q-item-label>
-                    <q-item-label >{{servico.contratante.nome}}</q-item-label>
+                    <q-item-label>{{ servico.contratante.nome }}</q-item-label>
                     <q-item-label class="text-weight-bold">Endereço</q-item-label>
-                    <q-item-label >{{servico.endereco.bairro}} - {{servico.endereco.cidade}} - {{servico.endereco.uf}}</q-item-label>
+                    <q-item-label>{{ servico.endereco.bairro }} - {{ servico.endereco.cidade }} -
+                      {{ servico.endereco.uf }}</q-item-label>
                   </q-item-section>
                 </q-item>
                 <q-separator />
@@ -28,29 +29,28 @@
 </template>
 
 <script>
-  import {
-    API,
-    request
-  } from '../../uteis/request'
+import {
+  API,
+  request
+} from '../../uteis/request'
 
-  export default {
-    data() {
-      return {
-        servicos: []
-      }
-    },
-    mounted() {
-      this.buscarServicos()
-    },
-    methods: {
-      async buscarServicos()
-      {
-        const retorno = await request(API, 'GET', 'servicos').then(response => response?.data)
-        if(!!retorno)
-          this.servicos = retorno
-      }
+export default {
+  data() {
+    return {
+      servicos: []
+    }
+  },
+  mounted() {
+    this.buscarServicos()
+  },
+  methods: {
+    async buscarServicos() {
+      const retorno = await request(API, 'GET', 'servicos').then(response => response?.data)
+      if (!!retorno)
+        this.servicos = retorno
     }
   }
+}
 </script>
 
 <style lang="sass">
